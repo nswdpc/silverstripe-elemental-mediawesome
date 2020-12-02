@@ -1,6 +1,6 @@
 {
     "name": "nswdpc/silverstripe-elemental-mediawesome",
-    "description": "The NSWDPC skeleton for Silverstripe modules.",
+    "description": "Element to show mediawseome content.",
     "type": "silverstripe-vendormodule",
     "keywords": [
         "silverstripe",
@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "silverstripe/blog": "^3.0",
+        "nglasl/silverstripe-mediawesome": "^4.0",
         "dnadesign/silverstripe-elemental": "^4.0"
     },
     "require-dev": {
