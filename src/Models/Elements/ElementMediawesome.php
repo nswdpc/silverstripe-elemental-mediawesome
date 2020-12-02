@@ -13,9 +13,7 @@ use SilverStripe\Forms\NumericField;
  */
 class ElementMediawesome extends ElementContent {
 
-    private static $inline_editable = false;
-
-    private static $icon = 'font-icon-picture';
+    private static $icon = 'font-icon-thumbnails';
 
     private static $table_name = 'ElementMediawesome';
 
