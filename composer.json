@@ -1,5 +1,5 @@
 {
-    "name": "nswdpc/silverstripe-module-skeleton",
+    "name": "nswdpc/ silverstripe-elemental-mediawesome",
     "description": "The NSWDPC skeleton for Silverstripe modules.",
     "type": "silverstripe-vendormodule",
     "keywords": [
@@ -18,17 +18,9 @@
             "role": "Optional role"
         }
     ],
-    "support": {
-        "key" : "value"
-    },
     "require": {
-        "package" : "^version"
-    },
-    "replace" : {
-        "package" : "version"
-    },
-    "suggest" : {
-        "package" : "reason"
+        "silverstripe/blog": "^3.0",
+        "dnadesign/silverstripe-elemental": "^4.0",
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",
