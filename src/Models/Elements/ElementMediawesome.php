@@ -55,7 +55,7 @@ class ElementMediawesome extends ElementContent {
                                 __CLASS__ . 'HOLDER_ID', 'Choose a media holder'
                             ),
                             $this->getMediaHolders()
-                        ),
+                        )->setEmptyString('Choose an option'),
                         NumericField::create(
                             'NumberOfPosts',
                             _t(
