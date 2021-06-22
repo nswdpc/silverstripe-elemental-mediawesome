@@ -16,7 +16,7 @@
         </ul>
         <p class="more">
             <a title="View more news" href="$MediaHolder.Link">
-                View more news <span aria-hidden="true" class="fa fa-chevron-right"></span>
+                <% if $MediaHolderLinkTitle %>{$MediaHolderLinkTitle}<% else %>View more news<% end_if %> <span aria-hidden="true" class="fa fa-chevron-right"></span>
             </a>
         </p>
     </div>

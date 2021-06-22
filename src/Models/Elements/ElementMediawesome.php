@@ -7,6 +7,7 @@ use nglasl\mediawesome\MediaHolder;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\NumericField;
+use SilverStripe\Forms\TextField;
 
 /**
  * ElementMediawesome adds a featured video
@@ -29,8 +30,8 @@ class ElementMediawesome extends ElementContent {
     }
 
     private static $db = [
-        'NumberOfPosts' => 'Int'
-
+        'NumberOfPosts' => 'Int',
+        'MediaHolderLinkTitle' => 'Varchar(255)'
     ];
 
     private static $defaults = [
@@ -56,6 +57,12 @@ class ElementMediawesome extends ElementContent {
                             ),
                             $this->getMediaHolders()
                         )->setEmptyString('Choose an option'),
+                        TextField::create(
+                            'MediaHolderLinkTitle',
+                            _t(
+                                __CLASS__ . 'LINKTITLE', 'Media holder link title'
+                            )
+                        ),
                         NumericField::create(
                             'NumberOfPosts',
                             _t(
