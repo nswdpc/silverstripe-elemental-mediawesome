@@ -4,15 +4,19 @@ namespace NSWDPC\Elemental\Models\Mediawesome;
 use DNADesign\Elemental\Models\ElementContent;
 use nglasl\mediawesome\MediaPage;
 use nglasl\mediawesome\MediaHolder;
+use nglasl\mediawesome\MediaTag;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\NumericField;
 use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\ListboxField;
 
 /**
  * ElementMediawesome adds a featured video
  */
 class ElementMediawesome extends ElementContent {
+
+    //private static $inline_editable = false;
 
     private static $icon = 'font-icon-thumbnails';
 
@@ -31,7 +35,8 @@ class ElementMediawesome extends ElementContent {
 
     private static $db = [
         'NumberOfPosts' => 'Int',
-        'MediaHolderLinkTitle' => 'Varchar(255)'
+        'MediaHolderLinkTitle' => 'Varchar(255)',
+        'CardColumns' => 'Varchar(64)'
     ];
 
     private static $defaults = [
@@ -39,14 +44,23 @@ class ElementMediawesome extends ElementContent {
     ];
 
     private static $has_one = [
-        'MediaHolder' => MediaHolder::class
+        'MediaHolder' => MediaHolder::class,
+        'Tag' => MediaTag::class
+    ];
+
+    private static $card_columns = [
+        '2' => 'Two',
+        '3' => 'Three',
+        '4' => 'Four',
     ];
 
     public function getCMSFields()
     {
         $this->beforeUpdateCMSFields(function($fields)
         {
-                $fields->removeByName(['MediaHolderID']);
+                $fields->removeByName(['MediaHolderID','TagID']);
+
+                $tags = MediaTag::get()->map('ID', 'Title');
 
                 $fields->addFieldsToTab(
                     'Root.Main', [
@@ -63,12 +77,22 @@ class ElementMediawesome extends ElementContent {
                                 __CLASS__ . 'LINKTITLE', 'Media holder link title'
                             )
                         ),
+                        DropdownField::create(
+                            'TagID',
+                            'Tag',
+                            $tags
+                        )->setEmptyString('Choose an option'),
                         NumericField::create(
                             'NumberOfPosts',
                             _t(
                                 __CLASS__ . 'POSTS', 'Number of Posts'
                             )
-                        )
+                        ),
+                        DropdownField::create(
+                            'CardColumns',
+                            'Card columns',
+                            $this->owner->config()->card_columns
+                        )->setEmptyString('Choose an option')
                     ]
                 );
 
@@ -83,7 +107,10 @@ class ElementMediawesome extends ElementContent {
     public function getRecentPosts()
     {
         $mediaHolder = $this->MediaHolder();
-        $mediaPages = MediaPage::get()->sort('Date', 'DESC')->filter('ParentID', $mediaHolder->ID);
+        $mediaPages = MediaPage::get()->sort('Date', 'ASC')->filter([
+            'ParentID' => $mediaHolder->ID,
+            'Tags.Title' => $this->Tag()->Title
+        ]);
 
         if ($mediaPages)
         {
@@ -91,6 +118,23 @@ class ElementMediawesome extends ElementContent {
         }
 
         return null;
+    }
+
+    public function getColumns()
+    {
+        $columns = $this->owner->CardColumns;
+
+        if ($columns == 2) {
+            return "nsw-col-sm-6";
+        }
+        if ($columns == 3) {
+            return "nsw-col-md-4";
+        }
+        if ($columns == 4) {
+            return "nsw-col-sm-6 nsw-col-md-4 nsw-col-lg-3";
+        }
+
+        return false;
     }
 
 }
