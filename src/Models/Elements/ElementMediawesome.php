@@ -35,8 +35,7 @@ class ElementMediawesome extends ElementContent {
 
     private static $db = [
         'NumberOfPosts' => 'Int',
-        'MediaHolderLinkTitle' => 'Varchar(255)',
-        'CardColumns' => 'Varchar(64)'
+        'MediaHolderLinkTitle' => 'Varchar(255)'
     ];
 
     private static $defaults = [
@@ -118,23 +117,6 @@ class ElementMediawesome extends ElementContent {
         }
 
         return null;
-    }
-
-    public function getColumns()
-    {
-        $columns = $this->owner->CardColumns;
-
-        if ($columns == 2) {
-            return "nsw-col-sm-6";
-        }
-        if ($columns == 3) {
-            return "nsw-col-md-4";
-        }
-        if ($columns == 4) {
-            return "nsw-col-sm-6 nsw-col-md-4 nsw-col-lg-3";
-        }
-
-        return false;
     }
 
 }
