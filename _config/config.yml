@@ -1,3 +1,6 @@
 ---
 Name: nswdpc-elemental-mediawesome
 ---
+NSWDPC\Elemental\Models\Mediawesome\ElementMediawesome:
+  extensions:
+    - 'NSWDPC\GridHelper\Extensions\ElementChildGridExtension'

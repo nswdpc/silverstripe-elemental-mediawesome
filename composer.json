@@ -23,7 +23,8 @@
     ],
     "require": {
         "nglasl/silverstripe-mediawesome": "^4.0",
-        "dnadesign/silverstripe-elemental": "^4.0"
+        "dnadesign/silverstripe-elemental": "^4.0",
+        "nswdpc/silverstripe-grid-helpers": "^0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",
