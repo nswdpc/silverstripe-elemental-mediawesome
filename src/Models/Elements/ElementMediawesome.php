@@ -16,8 +16,6 @@ use SilverStripe\Forms\ListboxField;
  */
 class ElementMediawesome extends ElementContent {
 
-    //private static $inline_editable = false;
-
     private static $icon = 'font-icon-thumbnails';
 
     private static $table_name = 'ElementMediawesome';
