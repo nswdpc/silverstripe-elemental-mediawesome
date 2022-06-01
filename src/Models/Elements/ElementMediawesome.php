@@ -104,7 +104,7 @@ class ElementMediawesome extends ElementContent {
     public function getRecentPosts()
     {
         $mediaHolder = $this->MediaHolder();
-        $mediaPages = MediaPage::get()->sort('Date', 'ASC')->filter([
+        $mediaPages = MediaPage::get()->sort('Date', 'DESC')->filter([
             'ParentID' => $mediaHolder->ID,
             'Tags.Title' => $this->Tag()->Title
         ]);
