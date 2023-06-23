@@ -1,6 +1,6 @@
 {
     "name": "nswdpc/silverstripe-elemental-mediawesome",
-    "description": "Element to show mediawseome content.",
+    "description": "Element to show mediawesome content.",
     "type": "silverstripe-vendormodule",
     "keywords": [
         "silverstripe",
