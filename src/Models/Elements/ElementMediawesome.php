@@ -10,6 +10,7 @@ use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\NumericField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\ListboxField;
+use SilverStripe\ORM\DataList;
 
 /**
  * ElementMediawesome adds a featured video
@@ -97,34 +98,38 @@ class ElementMediawesome extends ElementContent {
         return parent::getCMSFields();
     }
 
+    public function onBeforeWrite() {
+        parent::onBeforeWrite();
+        $this->NumberOfPosts = abs($this->NumberOfPosts);
+    }
+
     public function getMediaHolders() {
         return MediaHolder::get();
     }
 
-    public function getRecentPosts()
+    public function getRecentPosts() : ?DataList
     {
         $mediaHolder = $this->MediaHolder();
-       
-        if($this->Tag()->Title)
-        {
-            $mediaPages = MediaPage::get()->sort('Date', 'DESC')->filter([
-                'ParentID' => $mediaHolder->ID,
+        if(!$mediaHolder || !$mediaHolder->exists()) {
+            return null;
+        }
+
+        $mediaPages = MediaPage::get()->sort('Date', 'DESC')->filter([
+            'ParentID' => $mediaHolder->ID
+        ]);
+
+        $tag = $this->Tag();
+        if($tag && $tag->exists() && $tag->Title) {
+            $mediaPages = $mediaPages->filter([
                 'Tags.Title' => $this->Tag()->Title
             ]);
         }
-        else
-        {
-            $mediaPages = MediaPage::get()->sort('Date', 'DESC')->filter([
-                'ParentID' => $mediaHolder->ID
-            ]);
-        }
-      
-        if ($mediaPages)
-        {
-          return $mediaPages->limit($this->NumberOfPosts);
-        }
 
-        return null;
+        if ($mediaPages && $this->NumberOfPosts > 0) {
+            return $mediaPages->limit($this->NumberOfPosts);
+        } else {
+            return null;
+        }
     }
 
 
