@@ -126,10 +126,10 @@ class ElementMediawesome extends ElementContent {
         }
 
         if ($mediaPages && $this->NumberOfPosts > 0) {
-            return $mediaPages->limit($this->NumberOfPosts);
-        } else {
-            return null;
+            $mediaPages = $mediaPages->limit($this->NumberOfPosts);
         }
+
+        return $mediaPages;
     }
 
 

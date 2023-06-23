@@ -70,7 +70,7 @@ class ElementMediawesomeTest extends SapphireTest {
         $element->NumberOfPosts = 0;
         $recentPosts = $element->getRecentPosts();
         // no limit
-        $this->assertNull($recentPosts);
+        $this->assertEquals(4, $recentPosts->count());
     }
 
 }
