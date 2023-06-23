@@ -121,7 +121,7 @@ class ElementMediawesome extends ElementContent {
         $tag = $this->Tag();
         if($tag && $tag->exists() && $tag->Title) {
             $mediaPages = $mediaPages->filter([
-                'Tags.Title' => $this->Tag()->Title
+                'Tags.Title' => $tag->Title
             ]);
         }
 
