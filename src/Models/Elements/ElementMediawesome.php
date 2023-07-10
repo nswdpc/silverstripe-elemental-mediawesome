@@ -104,11 +104,21 @@ class ElementMediawesome extends ElementContent {
     public function getRecentPosts()
     {
         $mediaHolder = $this->MediaHolder();
-        $mediaPages = MediaPage::get()->sort('Date', 'DESC')->filter([
-            'ParentID' => $mediaHolder->ID,
-            'Tags.Title' => $this->Tag()->Title
-        ]);
-
+       
+        if($this->Tag()->Title)
+        {
+            $mediaPages = MediaPage::get()->sort('Date', 'DESC')->filter([
+                'ParentID' => $mediaHolder->ID,
+                'Tags.Title' => $this->Tag()->Title
+            ]);
+        }
+        else
+        {
+            $mediaPages = MediaPage::get()->sort('Date', 'DESC')->filter([
+                'ParentID' => $mediaHolder->ID
+            ]);
+        }
+      
         if ($mediaPages)
         {
           return $mediaPages->limit($this->NumberOfPosts);
@@ -116,5 +126,6 @@ class ElementMediawesome extends ElementContent {
 
         return null;
     }
+
 
 }
