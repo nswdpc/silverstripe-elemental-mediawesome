@@ -13,7 +13,8 @@ use SilverStripe\Forms\ListboxField;
 use SilverStripe\ORM\DataList;
 
 /**
- * ElementMediawesome adds a featured video
+ * ElementMediawesome
+ * Adds an element listing matching mediawesome child records
  */
 class ElementMediawesome extends ElementContent {
 
