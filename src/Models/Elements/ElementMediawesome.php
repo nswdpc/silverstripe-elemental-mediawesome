@@ -47,12 +47,6 @@ class ElementMediawesome extends ElementContent {
         'Tag' => MediaTag::class
     ];
 
-    private static $card_columns = [
-        '2' => 'Two',
-        '3' => 'Three',
-        '4' => 'Four',
-    ];
-
     public function getCMSFields()
     {
         $this->beforeUpdateCMSFields(function($fields)
@@ -90,12 +84,7 @@ class ElementMediawesome extends ElementContent {
                             _t(
                                 __CLASS__ . '.POSTS_DESCRIPTION', 'Setting this value to zero will return all matching posts'
                             )
-                        ),
-                        DropdownField::create(
-                            'CardColumns',
-                            'Card columns',
-                            $this->owner->config()->card_columns
-                        )->setEmptyString('Choose an option')
+                        )
                     ]
                 );
 
