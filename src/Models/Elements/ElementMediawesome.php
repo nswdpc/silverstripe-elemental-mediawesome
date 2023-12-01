@@ -65,14 +65,14 @@ class ElementMediawesome extends ElementContent {
                         DropdownField::create(
                             'MediaHolderID',
                             _t(
-                                __CLASS__ . 'HOLDER_ID', 'Choose a media holder'
+                                __CLASS__ . '.HOLDER_ID', 'Choose a media holder'
                             ),
                             $this->getMediaHolders()
                         )->setEmptyString('Choose an option'),
                         TextField::create(
                             'MediaHolderLinkTitle',
                             _t(
-                                __CLASS__ . 'LINKTITLE', 'Media holder link title'
+                                __CLASS__ . '.LINKTITLE', 'Media holder link title'
                             )
                         ),
                         DropdownField::create(
@@ -83,11 +83,11 @@ class ElementMediawesome extends ElementContent {
                         NumericField::create(
                             'NumberOfPosts',
                             _t(
-                                __CLASS__ . 'POSTS', 'Number of Posts'
+                                __CLASS__ . '.POSTS', 'Number of Posts'
                             )
                         )->setDescription(
                             _t(
-                                __CLASS__ . 'POSTS_DESCRIPTION', 'Setting this value to zero will return all matching posts'
+                                __CLASS__ . '.POSTS_DESCRIPTION', 'Setting this value to zero will return all matching posts'
                             )
                         ),
                         DropdownField::create(
