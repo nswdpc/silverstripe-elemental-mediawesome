@@ -85,6 +85,10 @@ class ElementMediawesome extends ElementContent {
                             _t(
                                 __CLASS__ . 'POSTS', 'Number of Posts'
                             )
+                        )->setDescription(
+                            _t(
+                                __CLASS__ . 'POSTS_DESCRIPTION', 'Setting this value to zero will return all matching posts'
+                            )
                         ),
                         DropdownField::create(
                             'CardColumns',
