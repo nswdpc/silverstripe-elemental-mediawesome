@@ -69,7 +69,7 @@ class ElementMediawesomeTest extends SapphireTest {
         $element->MediaHolderID = $holder->ID;
         $element->NumberOfPosts = 0;
         $recentPosts = $element->getRecentPosts();
-        // no limit
+        //  matches number of pages in fixture
         $this->assertEquals(4, $recentPosts->count());
     }
 
