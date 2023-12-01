@@ -138,7 +138,7 @@ class ElementMediawesome extends ElementContent {
     /**
      * Return all MediaHolder objects
      */
-    public function getMediaHolders() {
+    public function getMediaHolders() : DataList {
         return MediaHolder::get();
     }
 
