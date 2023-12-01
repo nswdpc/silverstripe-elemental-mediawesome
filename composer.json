@@ -1,6 +1,6 @@
 {
     "name": "nswdpc/silverstripe-elemental-mediawesome",
-    "description": "Element to show mediawseome content.",
+    "description": "Element to show mediawesome content.",
     "type": "silverstripe-vendormodule",
     "keywords": [
         "silverstripe",
@@ -28,5 +28,15 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "NSWDPC\\Elemental\\Models\\Mediawesome\\Tests\\": [
+                "tests/"
+            ],
+            "NSWDPC\\Elemental\\Models\\Mediawesome\\": [
+                "src/Models/Elements/"
+            ]
+        }
     }
 }

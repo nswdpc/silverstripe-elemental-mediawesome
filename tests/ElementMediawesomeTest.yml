@@ -1,0 +1,33 @@
+nglasl\mediawesome\MediaType:
+  type1:
+    'Title': 'type1'
+  type2:
+    'Title': 'type2'
+nglasl\mediawesome\MediaTag:
+  'tag1':
+    'Title': 'Tag1'
+  'tag2':
+    'Title': 'Tag2'
+  'tag3':
+    'Title': 'Tag2'
+  'tag4':
+    'Title': 'Tag2'
+nglasl\mediawesome\MediaHolder:
+  'holder1':
+    'Title': 'Holder1'
+nglasl\mediawesome\MediaPage:
+  'page1':
+    'Title': 'Page1'
+    'Parent': =>nglasl\mediawesome\MediaHolder.holder1
+  'page2':
+    'Title': 'Page2'
+    'Parent': =>nglasl\mediawesome\MediaHolder.holder1
+  'page3':
+    'Title': 'Page3'
+    'Parent': =>nglasl\mediawesome\MediaHolder.holder1
+  'pagewithtags':
+    'Title': 'PageWithTags'
+    'Parent': =>nglasl\mediawesome\MediaHolder.holder1
+    'Tags':
+      - =>nglasl\mediawesome\MediaTag.tag1
+      - =>nglasl\mediawesome\MediaTag.tag2
