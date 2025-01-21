@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "nglasl/silverstripe-mediawesome": "*",
+        "nglasl/silverstripe-mediawesome": "^5",
         "dnadesign/silverstripe-elemental": "^5",
         "nswdpc/silverstripe-grid-helpers": "^1"
     },
