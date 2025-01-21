@@ -11,20 +11,16 @@
     "license": "BSD-3-Clause",
     "authors": [
         {
-            "name": "Mark Taylor",
-            "homepage": "https://dpc.nsw.gov.au",
-            "role": "Bon Vivant"
+            "name": "Mark Taylor"
         },
         {
-            "name": "James Ellis",
-            "homepage": "https://dpc.nsw.gov.au",
-            "role": "Developer"
+            "name": "James Ellis"
         }
     ],
     "require": {
-        "nglasl/silverstripe-mediawesome": "^4.0",
-        "dnadesign/silverstripe-elemental": "^4.0",
-        "nswdpc/silverstripe-grid-helpers": "^0.2"
+        "nglasl/silverstripe-mediawesome": "^5",
+        "dnadesign/silverstripe-elemental": "^5",
+        "nswdpc/silverstripe-grid-helpers": "^1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
