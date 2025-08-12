@@ -107,7 +107,7 @@ class ElementMediawesome extends ElementContent
                             'Choose a media holder'
                         ),
                         $this->getMediaHolders()
-                    )->setEmptyString('Choose an option'),
+                    )->setEmptyString(_t(self::class . '.CHOOSE_OPTION', 'Choose an option')),
                     TextField::create(
                         'MediaHolderLinkTitle',
                         _t(
@@ -117,9 +117,12 @@ class ElementMediawesome extends ElementContent
                     ),
                     DropdownField::create(
                         'TagID',
-                        'Tag',
+                        _t(
+                            self::class . '.TAG',
+                            'Tag'
+                        ),
                         $tags
-                    )->setEmptyString('Choose an option'),
+                    )->setEmptyString(_t(self::class . '.CHOOSE_OPTION', 'Choose an option')),
                     NumericField::create(
                         'NumberOfPosts',
                         _t(
