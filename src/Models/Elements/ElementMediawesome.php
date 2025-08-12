@@ -1,15 +1,14 @@
 <?php
+
 namespace NSWDPC\Elemental\Models\Mediawesome;
 
 use DNADesign\Elemental\Models\ElementContent;
 use nglasl\mediawesome\MediaPage;
 use nglasl\mediawesome\MediaHolder;
 use nglasl\mediawesome\MediaTag;
-use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\NumericField;
 use SilverStripe\Forms\TextField;
-use SilverStripe\Forms\ListboxField;
 use SilverStripe\ORM\DataList;
 
 /**
@@ -23,8 +22,8 @@ use SilverStripe\ORM\DataList;
  * @method \nglasl\mediawesome\MediaTag Tag()
  * @mixin \NSWDPC\GridHelper\Extensions\ElementChildGridExtension
  */
-class ElementMediawesome extends ElementContent {
-
+class ElementMediawesome extends ElementContent
+{
     /**
      * @inheritdoc
      */
@@ -93,46 +92,50 @@ class ElementMediawesome extends ElementContent {
     #[\Override]
     public function getCMSFields()
     {
-        $this->beforeUpdateCMSFields(function($fields): void
-        {
-                $fields->removeByName(['MediaHolderID','TagID']);
+        $this->beforeUpdateCMSFields(function ($fields): void {
+            $fields->removeByName(['MediaHolderID','TagID']);
 
-                $tags = MediaTag::get()->map('ID', 'Title');
+            $tags = MediaTag::get()->map('ID', 'Title');
 
-                $fields->addFieldsToTab(
-                    'Root.Main', [
-                        DropdownField::create(
-                            'MediaHolderID',
-                            _t(
-                                self::class . '.HOLDER_ID', 'Choose a media holder'
-                            ),
-                            $this->getMediaHolders()
-                        )->setEmptyString('Choose an option'),
-                        TextField::create(
-                            'MediaHolderLinkTitle',
-                            _t(
-                                self::class . '.LINKTITLE', 'Media holder link title'
-                            )
+            $fields->addFieldsToTab(
+                'Root.Main',
+                [
+                    DropdownField::create(
+                        'MediaHolderID',
+                        _t(
+                            self::class . '.HOLDER_ID',
+                            'Choose a media holder'
                         ),
-                        DropdownField::create(
-                            'TagID',
-                            'Tag',
-                            $tags
-                        )->setEmptyString('Choose an option'),
-                        NumericField::create(
-                            'NumberOfPosts',
-                            _t(
-                                self::class . '.POSTS', 'Number of Posts'
-                            )
-                        )->setDescription(
-                            _t(
-                                self::class . '.POSTS_DESCRIPTION', 'Setting this value to zero will return all matching posts'
-                            )
+                        $this->getMediaHolders()
+                    )->setEmptyString('Choose an option'),
+                    TextField::create(
+                        'MediaHolderLinkTitle',
+                        _t(
+                            self::class . '.LINKTITLE',
+                            'Media holder link title'
                         )
-                    ]
-                );
+                    ),
+                    DropdownField::create(
+                        'TagID',
+                        'Tag',
+                        $tags
+                    )->setEmptyString('Choose an option'),
+                    NumericField::create(
+                        'NumberOfPosts',
+                        _t(
+                            self::class . '.POSTS',
+                            'Number of Posts'
+                        )
+                    )->setDescription(
+                        _t(
+                            self::class . '.POSTS_DESCRIPTION',
+                            'Setting this value to zero will return all matching posts'
+                        )
+                    )
+                ]
+            );
 
-            });
+        });
         return parent::getCMSFields();
     }
 
@@ -140,7 +143,8 @@ class ElementMediawesome extends ElementContent {
      * @inheritdoc
      */
     #[\Override]
-    public function onBeforeWrite() {
+    public function onBeforeWrite()
+    {
         parent::onBeforeWrite();
         $this->NumberOfPosts = abs($this->NumberOfPosts);
     }
@@ -148,17 +152,18 @@ class ElementMediawesome extends ElementContent {
     /**
      * Return all MediaHolder objects
      */
-    public function getMediaHolders() : DataList {
+    public function getMediaHolders(): DataList
+    {
         return MediaHolder::get();
     }
 
     /**
      * Get all recent posts based on filters and limit
      */
-    public function getRecentPosts() : ?DataList
+    public function getRecentPosts(): ?DataList
     {
         $mediaHolder = $this->MediaHolder();
-        if(!$mediaHolder || !$mediaHolder->exists()) {
+        if (!$mediaHolder || !$mediaHolder->exists()) {
             return null;
         }
 
@@ -167,7 +172,7 @@ class ElementMediawesome extends ElementContent {
         ]);
 
         $tag = $this->Tag();
-        if($tag && $tag->exists() && $tag->Title) {
+        if ($tag && $tag->exists() && $tag->Title) {
             $mediaPages = $mediaPages->filter([
                 'Tags.Title' => $tag->Title
             ]);

@@ -2,7 +2,6 @@
 
 namespace NSWDPC\Elemental\Models\Mediawesome\Tests;
 
-use NSWDPC\GridHelper\Extensions\ElementChildGridExtension;
 use NSWDPC\GridHelper\Models\Configuration;
 use NSWDPC\Elemental\Models\Mediawesome\ElementMediawesome;
 use SilverStripe\Core\Config\Config;
@@ -11,15 +10,16 @@ use nglasl\mediawesome\MediaTag;
 use nglasl\mediawesome\MediaHolder;
 use nglasl\mediawesome\MediaPage;
 
-class ElementMediawesomeTest extends SapphireTest {
-
+class ElementMediawesomeTest extends SapphireTest
+{
     protected $usesDatabase =  true;
 
     protected static $fixture_file = "./ElementMediawesomeTest.yml";
 
-    public function testColumnCount(): void {
+    public function testColumnCount(): void
+    {
 
-        Config::modify()->set( Configuration::class, 'grid_prefix', 'test-col');
+        Config::modify()->set(Configuration::class, 'grid_prefix', 'test-col');
         $element = ElementMediawesome::create();
         $element->CardColumns = 3;
 
@@ -30,9 +30,10 @@ class ElementMediawesomeTest extends SapphireTest {
 
     }
 
-    public function testRecentPosts(): void {
+    public function testRecentPosts(): void
+    {
         MediaPage::create()->requireDefaultRecords();//setup
-        $holder = $this->objFromFixture( MediaHolder::class, 'holder1');
+        $holder = $this->objFromFixture(MediaHolder::class, 'holder1');
         $element = ElementMediawesome::create();
         $element->MediaHolderID = $holder->ID;
         $element->NumberOfPosts = 3;
@@ -41,9 +42,10 @@ class ElementMediawesomeTest extends SapphireTest {
         $this->assertEquals(3, $recentPosts->count());
     }
 
-    public function testRecentPostsNoHolder(): void {
+    public function testRecentPostsNoHolder(): void
+    {
         MediaPage::create()->requireDefaultRecords();//setup
-        $this->objFromFixture( MediaHolder::class, 'holder1');
+        $this->objFromFixture(MediaHolder::class, 'holder1');
         $element = ElementMediawesome::create();
         $element->NumberOfPosts = 3;
 
@@ -51,10 +53,11 @@ class ElementMediawesomeTest extends SapphireTest {
         $this->assertNull($recentPosts);
     }
 
-    public function testRecentPostsWithTag(): void {
+    public function testRecentPostsWithTag(): void
+    {
         MediaPage::create()->requireDefaultRecords();//setup
-        $holder = $this->objFromFixture( MediaHolder::class, 'holder1');
-        $tag = $this->objFromFixture( MediaTag::class, 'tag1' );
+        $holder = $this->objFromFixture(MediaHolder::class, 'holder1');
+        $tag = $this->objFromFixture(MediaTag::class, 'tag1');
         $element = ElementMediawesome::create();
         $element->MediaHolderID = $holder->ID;
         $element->NumberOfPosts = 3;
@@ -65,9 +68,10 @@ class ElementMediawesomeTest extends SapphireTest {
         $this->assertEquals('PageWithTags', $recentPosts->first()->Title);
     }
 
-    public function testRecentPostsWithNoLimit(): void {
+    public function testRecentPostsWithNoLimit(): void
+    {
         MediaPage::create()->requireDefaultRecords();//setup
-        $holder = $this->objFromFixture( MediaHolder::class, 'holder1');
+        $holder = $this->objFromFixture(MediaHolder::class, 'holder1');
         $element = ElementMediawesome::create();
         $element->MediaHolderID = $holder->ID;
         $element->NumberOfPosts = 0;
