@@ -15,43 +15,50 @@ use SilverStripe\ORM\DataList;
 /**
  * ElementMediawesome
  * Adds an element listing matching mediawesome child records
+ * @property int $NumberOfPosts
+ * @property ?string $MediaHolderLinkTitle
+ * @property int $MediaHolderID
+ * @property int $TagID
+ * @method \nglasl\mediawesome\MediaHolder MediaHolder()
+ * @method \nglasl\mediawesome\MediaTag Tag()
+ * @mixin \NSWDPC\GridHelper\Extensions\ElementChildGridExtension
  */
 class ElementMediawesome extends ElementContent {
 
     /**
      * @inheritdoc
      */
-    private static $icon = 'font-icon-thumbnails';
+    private static string $icon = 'font-icon-thumbnails';
 
     /**
      * @inheritdoc
      */
-    private static $table_name = 'ElementMediawesome';
+    private static string $table_name = 'ElementMediawesome';
 
     /**
      * @inheritdoc
      */
-    private static $title = 'Mediawesome list';
+    private static string $title = 'Mediawesome list';
 
     /**
      * @inheritdoc
      */
-    private static $description = "Display a list of Mediawesome items";
+    private static string $description = "Display a list of Mediawesome items";
 
     /**
      * @inheritdoc
      */
-    private static $singular_name = 'Mediawesome';
+    private static string $singular_name = 'Mediawesome';
 
     /**
      * @inheritdoc
      */
-    private static $plural_name = 'Mediawesomes';
+    private static string $plural_name = 'Mediawesomes';
 
     /**
      * @inheritdoc
      */
-    private static $db = [
+    private static array $db = [
         'NumberOfPosts' => 'Int',
         'MediaHolderLinkTitle' => 'Varchar(255)'
     ];
@@ -59,14 +66,14 @@ class ElementMediawesome extends ElementContent {
     /**
      * @inheritdoc
      */
-    private static $defaults = [
+    private static array $defaults = [
         'NumberOfPosts' => 4
     ];
 
     /**
      * @inheritdoc
      */
-    private static $has_one = [
+    private static array $has_one = [
         'MediaHolder' => MediaHolder::class,
         'Tag' => MediaTag::class
     ];
@@ -74,17 +81,19 @@ class ElementMediawesome extends ElementContent {
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function getType()
     {
-        return _t(__CLASS__ . '.BlockType', 'Mediawesome list');
+        return _t(self::class . '.BlockType', 'Mediawesome list');
     }
 
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function getCMSFields()
     {
-        $this->beforeUpdateCMSFields(function($fields)
+        $this->beforeUpdateCMSFields(function($fields): void
         {
                 $fields->removeByName(['MediaHolderID','TagID']);
 
@@ -95,14 +104,14 @@ class ElementMediawesome extends ElementContent {
                         DropdownField::create(
                             'MediaHolderID',
                             _t(
-                                __CLASS__ . '.HOLDER_ID', 'Choose a media holder'
+                                self::class . '.HOLDER_ID', 'Choose a media holder'
                             ),
                             $this->getMediaHolders()
                         )->setEmptyString('Choose an option'),
                         TextField::create(
                             'MediaHolderLinkTitle',
                             _t(
-                                __CLASS__ . '.LINKTITLE', 'Media holder link title'
+                                self::class . '.LINKTITLE', 'Media holder link title'
                             )
                         ),
                         DropdownField::create(
@@ -113,11 +122,11 @@ class ElementMediawesome extends ElementContent {
                         NumericField::create(
                             'NumberOfPosts',
                             _t(
-                                __CLASS__ . '.POSTS', 'Number of Posts'
+                                self::class . '.POSTS', 'Number of Posts'
                             )
                         )->setDescription(
                             _t(
-                                __CLASS__ . '.POSTS_DESCRIPTION', 'Setting this value to zero will return all matching posts'
+                                self::class . '.POSTS_DESCRIPTION', 'Setting this value to zero will return all matching posts'
                             )
                         )
                     ]
@@ -130,6 +139,7 @@ class ElementMediawesome extends ElementContent {
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function onBeforeWrite() {
         parent::onBeforeWrite();
         $this->NumberOfPosts = abs($this->NumberOfPosts);
