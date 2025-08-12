@@ -170,7 +170,7 @@ class ElementMediawesome extends ElementContent
             return null;
         }
 
-        $mediaPages = MediaPage::get()->sort('Date', 'DESC')->filter([
+        $mediaPages = MediaPage::get()->sort(['Date' => 'DESC'])->filter([
             'ParentID' => $mediaHolder->ID
         ]);
 
