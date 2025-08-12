@@ -23,7 +23,13 @@
         "nswdpc/silverstripe-grid-helpers": "^1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "cambis/silverstripe-rector": "^2",
+        "cambis/silverstan": "^2",
+        "friendsofphp/php-cs-fixer": "^3",
+        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^2",
+        "rector/rector": "^2",
+        "nswdpc/ci-files": "dev-v-4"
     },
     "autoload": {
         "psr-4": {
@@ -33,6 +39,12 @@
             "NSWDPC\\Elemental\\Models\\Mediawesome\\": [
                 "src/Models/Elements/"
             ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "silverstripe/vendor-plugin": true
         }
     }
 }
