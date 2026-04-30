@@ -17,8 +17,14 @@
             "name": "James Ellis"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/nswdpc/silverstripe-mediawesome.git"
+        }
+    ],
     "require": {
-        "nglasl/silverstripe-mediawesome": "^5",
+        "nglasl/silverstripe-mediawesome": "dev-feat-ci-files",
         "dnadesign/silverstripe-elemental": "^5",
         "nswdpc/silverstripe-grid-helpers": "^1"
     },
