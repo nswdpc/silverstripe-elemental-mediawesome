@@ -26,7 +26,7 @@
     "require": {
         "nglasl/silverstripe-mediawesome": "dev-ss6",
         "dnadesign/silverstripe-elemental": "^6",
-        "nswdpc/silverstripe-grid-helpers": "dev-ss6"
+        "nswdpc/silverstripe-grid-helpers": "^2"
     },
     "require-dev": {
         "cambis/silverstripe-rector": "^2",
