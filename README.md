@@ -7,7 +7,9 @@ See composer.json
 
 ## Installation
 
-```composer require nswdpc/silverstripe-elemental-mediawesome```
+```sh
+composer require nswdpc/silverstripe-elemental-mediawesome
+```
 
 ## License
 
@@ -15,7 +17,7 @@ See composer.json
 
 ## Maintainers
 
-+ [dpcdigital@NSWDPC:~$](https://dpc.nsw.gov.au)
++ PD Web Team
 
 ## Bugtracker
 
